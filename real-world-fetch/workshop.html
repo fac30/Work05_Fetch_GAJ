@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real world fetch</title>
-  </head>
-  <body>
-    <!-- <form>
-      <label for="name">Name</label>
-      <input placeholder="Enter Name" id="name" />
-      <br>
-      <label for="email">E-mail</label>
-      <input placeholder="Enter Email" id="email"/>
-    <button id="submit" type="submit">Log in</button>
-    </form> -->
-    <script>
-    //   const expError = ()=>
-    //   {return fetch("https://echo.oliverjam.workers.dev/status/404")
-    //   .then((response)=>{ if(!response.ok){
-    //     const error = new Error(response.status);
-    //     throw console.error();
-    //   }
-    //   console.log(response)
-    // }).catch(console.error)}
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Real world fetch</title>
+	</head>
+	<body>
+		<form>
+			<label for="name">Name</label>
+			<input placeholder="Enter Name" id="name" />
+			<br />
+			<label for="email">E-mail</label>
+			<input placeholder="Enter Email" id="email" />
+			<button id="submit" type="submit">Log in</button>
+		</form>
+		<script>
+			    //   const expError = ()=>
+			    //   {return fetch("https://echo.oliverjam.workers.dev")
+			    //   .then((response)=>{ if(!response.ok){
+			    //     const error = new Error(response.status);
+			    //     throw console.error();
+			    //   }
+			    //   console.log(response)
+			    // }).catch(console.error)}
 
-    //   expError();
-
-
-    // const form = document.querySelector("form");
-    // form.addEventListener('submit', (event)=>{
-    //   event.preventDefault()
-    //   const formData = new FormData(form);
-    //   const data = Object.fromEntries(formData);
-      
-      
-
-    //   fetch("https://echo.oliverjam.workers.dev/json",{
-    //   method:"POST",
-    //   headers:{ "Content-Type":"application/json" },
-    //   body: JSON.stringify(data)
-    // }).then((response) =>{ if(!response.ok)
-    //   {throw new Error(response.status);}
-    //    return response.json();
-      
-    // }).then(console.log)
-    // .catch(console.error)
-
-    // })
-
-const pokemon = (pokiName)=>{
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokiName}`, {
-      method: "GET",headers:{ "Content-Type":"application/json" },
-    }).then((response) =>{ if(!response.ok)
-      {throw new Error(response.status);}
-       return response.json();
-      
-    }).then(console.log)
-    .catch(console.error)
-      
-    
-  
-  
-  }
+			    //   expError();
 
 
-    </script>
-  </body>
+			       const form = document.querySelector("form");
+			       form.addEventListener('submit', (event)=>{
+			         event.preventDefault()
+			        //  const name = document.querySelectorAll('input').value
+			        //  const savedData = { name}
+              const formData = new FormData(form)
+              const data = Object.fromEntries(formData)
+
+
+              fetch("https://echo.oliverjam.workers.dev/json", {
+                method: "POST",
+                body: JSON.stringify(savedData),
+                headers: { "content-type": "application/json" },}).then((response)=>{
+              if(!response.ok)
+              {
+                throw new Error('error in posting')
+              }
+              return response.json();
+
+             }).then((json)=> console.log(json)).catch((error)=> console.error(error))
+         
+
+            })
+
+
+
+
+
+
+
+
+			// const pokemon = (pokiName)=>{
+			//     fetch(`https://pokeapi.co/api/v2/pokemon/${pokiName}`, {
+			//       method: "GET",headers:{ "Content-Type":"application/json" },
+			//     }).then((response) =>{ if(!response.ok)
+			//       {throw new Error(response.status);}
+			//        return response.json();
+
+			//     }).then(console.log)
+			//     .catch(console.error)
+
+
+
+
+			  }
+		</script>
+	</body>
 </html>

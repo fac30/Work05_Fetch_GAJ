@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Pokemon Search</h1>
+		<form>
+			<label for="pokiName"></label>
+			<input id="pokiName" name="pokimon" placeholder="enter pokemon" />
+			<button type="submit">Search</button>
+			<h3 id="pokih3"></h3>
+			<img id="pokemonImage" />
+		</form>
+		<script>
+			const form = document.querySelector('form');
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+				const formData = new FormData(form);
+				const data = Object.fromEntries(formData);
+
+				const pokimon = (pokimonName) => {
+					const url = `https://pokeapi.co/api/v2/pokemon/${pokimonName}`;
+					return fetch(url, { method: 'GET' }).then((response) => {
+						if (!response.ok) {
+							throw new Error('pokemon not found');
+						}
+                        console.log(response)
+						return response.json();
+
+					});
+				};
+				const pokiName = data.pokimon;
+				pokimon(pokiName)
+					.then((response) => {
+						const nameOf = response.name;
+						const pokiPic = response.sprites.front_default;
+
+						document.getElementById('pokih3').textContent = nameOf;
+						document.getElementById('pokemonImage').src = pokiPic;
+					})
+					.catch(console.error);
+			});
+		</script>
+	</body>
+</html>
